@@ -22,12 +22,11 @@
  */
 package eu.verdelhan.ta4j.indicators.simple;
 
-import eu.verdelhan.ta4j.Indicator;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.AbstractIndicator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import eu.verdelhan.ta4j.indicators.AbstractIndicator;
 
 /**
  * A fixed indicator.

@@ -29,7 +29,6 @@ import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class TrailingStopLossIndicatorTest {
     

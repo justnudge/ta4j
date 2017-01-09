@@ -51,7 +51,7 @@ public class HMAIndicator extends CachedIndicator<Decimal> {
         WMAIndicator halfWma = new WMAIndicator(indicator, timeFrame / 2);
         WMAIndicator origWma = new WMAIndicator(indicator, timeFrame);
         
-        Indicator indicatorForSqrtWma = new DifferenceIndicator(new MultiplierIndicator(halfWma, Decimal.TWO), origWma);
+        Indicator<Decimal> indicatorForSqrtWma = new DifferenceIndicator(new MultiplierIndicator(halfWma, Decimal.TWO), origWma);
         sqrtWma = new WMAIndicator(indicatorForSqrtWma, (int) Math.sqrt(timeFrame));
     }
 
