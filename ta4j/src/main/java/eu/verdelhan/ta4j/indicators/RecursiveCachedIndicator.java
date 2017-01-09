@@ -38,6 +38,10 @@ import eu.verdelhan.ta4j.TimeSeries;
 public abstract class RecursiveCachedIndicator<T> extends CachedIndicator<T> {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -3747423983995296971L;
+    /**
      * The recursion threshold for which an iterative calculation is executed.
      * @TODO Should be variable (depending on the sub-indicators used in this indicator)
      */

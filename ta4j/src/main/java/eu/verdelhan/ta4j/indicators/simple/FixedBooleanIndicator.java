@@ -28,6 +28,11 @@ package eu.verdelhan.ta4j.indicators.simple;
 public class FixedBooleanIndicator extends FixedIndicator<Boolean> {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 4860621553533405216L;
+
+    /**
      * Constructor.
      * @param values the values to be returned by this indicator
      */

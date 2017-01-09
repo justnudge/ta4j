@@ -43,6 +43,11 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class DPOIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8444078003293687736L;
+
     private final int timeFrame;
     
     private final int timeShift;

@@ -34,6 +34,11 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class MeanDeviationIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1146429234278028519L;
+
     private Indicator<Decimal> indicator;
 
     private int timeFrame;

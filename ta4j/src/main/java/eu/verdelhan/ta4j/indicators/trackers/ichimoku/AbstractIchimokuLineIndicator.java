@@ -38,6 +38,11 @@ import eu.verdelhan.ta4j.indicators.simple.MinPriceIndicator;
  */
 public abstract class AbstractIchimokuLineIndicator extends CachedIndicator<Decimal>{
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6648183343046189134L;
+
     /** The period high */
     private final Indicator<Decimal> periodHigh;
 

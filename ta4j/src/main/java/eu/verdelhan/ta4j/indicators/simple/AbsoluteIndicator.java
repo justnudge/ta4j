@@ -32,6 +32,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class AbsoluteIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2069822967787573675L;
     private Indicator<Decimal> indicator;
     
     public AbsoluteIndicator(Indicator<Decimal> indicator) {

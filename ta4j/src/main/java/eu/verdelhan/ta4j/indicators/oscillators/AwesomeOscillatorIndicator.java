@@ -34,6 +34,11 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class AwesomeOscillatorIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -463568902876303588L;
+
     private SMAIndicator sma5;
 
     private SMAIndicator sma34;

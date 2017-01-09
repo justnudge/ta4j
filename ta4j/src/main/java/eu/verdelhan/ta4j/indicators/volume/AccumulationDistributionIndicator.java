@@ -34,6 +34,11 @@ import eu.verdelhan.ta4j.indicators.helpers.CloseLocationValueIndicator;
  */
 public class AccumulationDistributionIndicator extends RecursiveCachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7139116874730805890L;
+
     private TimeSeries series;
     
     private CloseLocationValueIndicator clvIndicator;

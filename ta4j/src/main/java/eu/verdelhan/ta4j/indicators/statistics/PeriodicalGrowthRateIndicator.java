@@ -58,6 +58,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class PeriodicalGrowthRateIndicator extends CachedIndicator<Decimal> {
       
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6174938576934604852L;
+
     private final Indicator<Decimal> indicator;
 
     private final int timeFrame;

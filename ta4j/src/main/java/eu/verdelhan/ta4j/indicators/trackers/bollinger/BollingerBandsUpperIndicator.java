@@ -33,6 +33,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class BollingerBandsUpperIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6561198545731901201L;
+
     private final Indicator<Decimal> indicator;
 
     private final BollingerBandsMiddleIndicator bbm;

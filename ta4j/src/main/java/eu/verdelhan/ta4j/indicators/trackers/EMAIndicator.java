@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.indicators.RecursiveCachedIndicator;
  */
 public class EMAIndicator extends RecursiveCachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7154250171237758547L;
+
     private final Indicator<Decimal> indicator;
 
     private final int timeFrame;

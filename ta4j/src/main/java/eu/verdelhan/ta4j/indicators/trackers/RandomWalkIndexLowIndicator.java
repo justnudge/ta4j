@@ -34,6 +34,11 @@ import eu.verdelhan.ta4j.indicators.simple.MinPriceIndicator;
  */
 public class RandomWalkIndexLowIndicator extends CachedIndicator<Decimal>{
 
+/**
+     * 
+     */
+    private static final long serialVersionUID = 7405354000554357606L;
+
 private final MaxPriceIndicator maxPrice;
     
     private final MinPriceIndicator minPrice;

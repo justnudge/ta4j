@@ -34,6 +34,11 @@ import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
  */
 public class IchimokuChikouSpanIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1053107994462062337L;
+
     /** The close price */
     private final ClosePriceIndicator closePriceIndicator;
     

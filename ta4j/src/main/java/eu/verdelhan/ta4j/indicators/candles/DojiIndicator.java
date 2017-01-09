@@ -37,6 +37,10 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class DojiIndicator extends CachedIndicator<Boolean> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8391310190212718311L;
     /** Body height */
     private final Indicator<Decimal> bodyHeightInd;
     /** Average body height */

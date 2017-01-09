@@ -34,6 +34,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class ROCIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6561178002357793560L;
+
     private final Indicator<Decimal> indicator;
 
     private final int timeFrame;

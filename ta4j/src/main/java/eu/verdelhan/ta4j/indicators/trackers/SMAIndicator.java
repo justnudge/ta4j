@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class SMAIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5025860923919162234L;
+
     private final Indicator<Decimal> indicator;
 
     private final int timeFrame;

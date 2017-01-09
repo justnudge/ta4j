@@ -37,6 +37,11 @@ import eu.verdelhan.ta4j.indicators.simple.VolumeIndicator;
  */
 public class ChaikinMoneyFlowIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4509837052646704543L;
+
     private TimeSeries series;
     
     private CloseLocationValueIndicator clvIndicator;

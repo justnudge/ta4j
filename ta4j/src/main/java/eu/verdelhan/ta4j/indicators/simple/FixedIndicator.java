@@ -35,6 +35,10 @@ import java.util.List;
  */
 public class FixedIndicator<T> extends AbstractIndicator<T> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1663159386205082641L;
     private final List<T> values = new ArrayList<T>();
 
     /**

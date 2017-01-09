@@ -34,6 +34,11 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class PercentBIndicator extends CachedIndicator<Decimal> {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1315508913396915838L;
+
     private final Indicator<Decimal> indicator;
 
     private final BollingerBandsUpperIndicator bbu;

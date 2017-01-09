@@ -33,6 +33,11 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class AbstractIndicator<T> implements Indicator<T> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2328657409032073636L;
+
     /** The logger */
     protected final Logger log = LoggerFactory.getLogger(getClass());
 

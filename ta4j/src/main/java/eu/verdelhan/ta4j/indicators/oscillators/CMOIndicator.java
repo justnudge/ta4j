@@ -36,6 +36,11 @@ import eu.verdelhan.ta4j.indicators.helpers.CumulatedLossesIndicator;
  */
 public class CMOIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6720325856751468379L;
+
     private final CumulatedGainsIndicator cumulatedGains;
 
     private final CumulatedLossesIndicator cumulatedLosses;

@@ -34,6 +34,10 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class StochasticOscillatorDIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8059184736880551832L;
     private Indicator<Decimal> indicator;
 
     public StochasticOscillatorDIndicator(StochasticOscillatorKIndicator k) {

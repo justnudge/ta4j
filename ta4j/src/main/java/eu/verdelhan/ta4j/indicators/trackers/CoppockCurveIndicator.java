@@ -34,6 +34,10 @@ import eu.verdelhan.ta4j.indicators.simple.SumIndicator;
  */
 public class CoppockCurveIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5049152147685026617L;
     private final WMAIndicator wma;
     
     /**

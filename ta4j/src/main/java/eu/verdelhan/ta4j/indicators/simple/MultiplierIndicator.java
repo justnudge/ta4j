@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class MultiplierIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8005545878432959243L;
+
     private Indicator<Decimal> indicator;
     
     private Decimal coefficient;

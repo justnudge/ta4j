@@ -39,6 +39,11 @@ import java.util.List;
  */
 public class CashFlow implements Indicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -565180506743119137L;
+
     /** The time series */
     private final TimeSeries timeSeries;
 

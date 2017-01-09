@@ -34,6 +34,11 @@ import eu.verdelhan.ta4j.indicators.simple.MedianPriceIndicator;
  */
 public class AccelerationDecelerationIndicator extends CachedIndicator<Decimal> {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -9186426564507220241L;
+
     private AwesomeOscillatorIndicator awesome;
     
     private SMAIndicator sma5;

@@ -34,6 +34,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class BearishEngulfingIndicator extends CachedIndicator<Boolean> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4987586769241971699L;
     private final TimeSeries series;
     
     /**

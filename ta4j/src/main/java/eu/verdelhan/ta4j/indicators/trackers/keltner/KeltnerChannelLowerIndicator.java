@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.indicators.helpers.AverageTrueRangeIndicator;
  */
 public class KeltnerChannelLowerIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7816129824286423073L;
+
     private final AverageTrueRangeIndicator averageTrueRangeIndicator;
 
     private final KeltnerChannelMiddleIndicator keltnerMiddleIndicator;

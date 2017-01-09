@@ -33,6 +33,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class IchimokuSenkouSpanAIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8412009317451923586L;
+
     /** The Tenkan-sen indicator */
     private final IchimokuTenkanSenIndicator conversionLine;
 

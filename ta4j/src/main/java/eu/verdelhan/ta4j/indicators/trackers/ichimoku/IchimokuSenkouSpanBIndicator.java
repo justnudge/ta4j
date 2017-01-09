@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.TimeSeries;
 public class IchimokuSenkouSpanBIndicator extends AbstractIchimokuLineIndicator {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -363222385175865464L;
+
+    /**
      * Constructor.
      * @param series the series
      */

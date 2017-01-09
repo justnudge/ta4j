@@ -32,6 +32,10 @@ import eu.verdelhan.ta4j.indicators.RecursiveCachedIndicator;
  */
 public class AverageTrueRangeIndicator extends RecursiveCachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4802901319650404131L;
     private final int timeFrame;
     private final TrueRangeIndicator tr;
 

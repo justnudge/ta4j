@@ -35,6 +35,11 @@ import eu.verdelhan.ta4j.indicators.simple.MaxPriceIndicator;
  */
 public class ChandelierExitLongIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3949224865213666757L;
+
     private final HighestValueIndicator high;
     
     private final AverageTrueRangeIndicator atr;

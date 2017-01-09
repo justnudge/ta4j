@@ -34,6 +34,10 @@ import eu.verdelhan.ta4j.indicators.statistics.VarianceIndicator;
  */
 public class StandardDeviationIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5887420015638915630L;
     private VarianceIndicator variance;
 
     /**

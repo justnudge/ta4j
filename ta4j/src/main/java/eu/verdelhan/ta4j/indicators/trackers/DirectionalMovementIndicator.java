@@ -34,6 +34,10 @@ import eu.verdelhan.ta4j.indicators.helpers.DirectionalUpIndicator;
  */
 public class DirectionalMovementIndicator extends CachedIndicator<Decimal>{
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2140516760078148386L;
     private final int timeFrame;
     private final DirectionalUpIndicator dup;
     private final DirectionalDownIndicator ddown;

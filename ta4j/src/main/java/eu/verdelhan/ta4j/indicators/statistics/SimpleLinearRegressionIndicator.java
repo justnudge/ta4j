@@ -35,6 +35,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class SimpleLinearRegressionIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1275241394724128378L;
+
     private Indicator<Decimal> indicator;
     
     private int timeFrame;

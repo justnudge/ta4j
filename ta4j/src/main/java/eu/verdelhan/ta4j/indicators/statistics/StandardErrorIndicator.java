@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class StandardErrorIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4289370085859896736L;
+
     private int timeFrame;
     
     private StandardDeviationIndicator sdev;

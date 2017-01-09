@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class MACDIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5101315188358308914L;
+
     private final EMAIndicator shortTermEma;
 
     private final EMAIndicator longTermEma;

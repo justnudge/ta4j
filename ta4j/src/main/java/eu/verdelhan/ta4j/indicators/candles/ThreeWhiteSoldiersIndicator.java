@@ -35,6 +35,11 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class ThreeWhiteSoldiersIndicator extends CachedIndicator<Boolean> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4011023621751266913L;
+
     private final TimeSeries series;
     
     /** Upper shadow */

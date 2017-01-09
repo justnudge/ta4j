@@ -33,6 +33,11 @@ import eu.verdelhan.ta4j.indicators.trackers.EMAIndicator;
  */
 public class PPOIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -158323121323661085L;
+
     private final EMAIndicator shortTermEma;
 
     private final EMAIndicator longTermEma;

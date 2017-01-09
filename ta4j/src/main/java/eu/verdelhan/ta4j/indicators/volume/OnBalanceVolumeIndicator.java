@@ -32,6 +32,10 @@ import eu.verdelhan.ta4j.indicators.RecursiveCachedIndicator;
  */
 public class OnBalanceVolumeIndicator extends RecursiveCachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1104300013882515908L;
     private final TimeSeries series;
 
     public OnBalanceVolumeIndicator(TimeSeries series) {

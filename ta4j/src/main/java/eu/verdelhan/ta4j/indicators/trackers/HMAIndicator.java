@@ -35,6 +35,11 @@ import eu.verdelhan.ta4j.indicators.simple.MultiplierIndicator;
  */
 public class HMAIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -968005393934233639L;
+
     private final int timeFrame;
 
     private final WMAIndicator sqrtWma;

@@ -35,6 +35,10 @@ import eu.verdelhan.ta4j.indicators.trackers.EMAIndicator;
  */
 public class KeltnerChannelMiddleIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2090819367482797239L;
     private final EMAIndicator emaIndicator;
 
     public KeltnerChannelMiddleIndicator(TimeSeries series, int timeFrameEMA) {

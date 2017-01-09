@@ -33,6 +33,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class DifferenceIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5302212565556061294L;
+
     private Indicator<Decimal> first;
     
     private Indicator<Decimal> second;

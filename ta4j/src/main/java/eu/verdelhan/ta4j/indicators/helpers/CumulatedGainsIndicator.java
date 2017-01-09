@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class CumulatedGainsIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1898544308698352057L;
+
     private final Indicator<Decimal> indicator;
 
     private final int timeFrame;

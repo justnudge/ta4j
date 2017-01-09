@@ -34,6 +34,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class BearishHaramiIndicator extends CachedIndicator<Boolean> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8365431256105562777L;
     private final TimeSeries series;
     
     /**

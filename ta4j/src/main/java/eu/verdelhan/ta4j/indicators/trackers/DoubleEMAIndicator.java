@@ -33,6 +33,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class DoubleEMAIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3372254748490627803L;
+
     private final int timeFrame;
 
     private final EMAIndicator ema;

@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class LowestValueIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7965955495608650119L;
+
     private final Indicator<Decimal> indicator;
 
     private final int timeFrame;

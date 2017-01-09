@@ -55,6 +55,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class TrailingStopLossIndicator extends CachedIndicator<Decimal> {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -649540224053783047L;
+
     private final Indicator<Decimal> indicator;
 
     private Decimal stopLossLimit;

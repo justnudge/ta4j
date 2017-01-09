@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.Tick;
  */
 public class MockTick extends Tick {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 355251676053930350L;
+
     private Decimal amount = Decimal.ZERO;
 
     private int trades = 0;

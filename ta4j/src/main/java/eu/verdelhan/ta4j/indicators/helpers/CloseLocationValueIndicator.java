@@ -35,6 +35,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class CloseLocationValueIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5957466360614557650L;
     private TimeSeries series;
 
     public CloseLocationValueIndicator(TimeSeries series) {

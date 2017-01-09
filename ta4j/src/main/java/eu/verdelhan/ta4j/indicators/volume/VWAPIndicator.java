@@ -37,6 +37,11 @@ import eu.verdelhan.ta4j.indicators.simple.VolumeIndicator;
  */
 public class VWAPIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3312739287350668596L;
+
     private final int timeFrame;
     
     private final Indicator<Decimal> typicalPrice;

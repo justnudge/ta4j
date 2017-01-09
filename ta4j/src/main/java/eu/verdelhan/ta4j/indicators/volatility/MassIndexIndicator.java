@@ -38,6 +38,11 @@ import eu.verdelhan.ta4j.indicators.trackers.EMAIndicator;
  */
 public class MassIndexIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1763792702917452287L;
+
     private EMAIndicator singleEma;
     
     private EMAIndicator doubleEma;

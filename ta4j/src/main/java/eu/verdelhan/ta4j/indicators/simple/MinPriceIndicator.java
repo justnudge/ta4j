@@ -32,6 +32,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class MinPriceIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3676021119641672679L;
     private TimeSeries series;
 
     public MinPriceIndicator(TimeSeries series) {

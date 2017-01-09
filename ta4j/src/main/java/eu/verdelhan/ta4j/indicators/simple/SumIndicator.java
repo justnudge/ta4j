@@ -33,6 +33,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class SumIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5442721714633293571L;
     private Indicator<Decimal>[] operands;
     
     /**

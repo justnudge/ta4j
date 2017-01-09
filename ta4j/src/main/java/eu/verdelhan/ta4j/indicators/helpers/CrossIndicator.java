@@ -33,6 +33,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class CrossIndicator extends CachedIndicator<Boolean> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7467066634685298062L;
     /** Upper indicator */
     private final Indicator<Decimal> up;
     /** Lower indicator */

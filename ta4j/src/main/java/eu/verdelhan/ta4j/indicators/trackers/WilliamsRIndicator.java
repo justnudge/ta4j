@@ -38,6 +38,11 @@ import eu.verdelhan.ta4j.indicators.simple.MinPriceIndicator;
  */
 public class WilliamsRIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7745036134985796507L;
+
     private final Indicator<Decimal> indicator;
 
     private final int timeFrame;

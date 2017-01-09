@@ -32,6 +32,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class TrueRangeIndicator extends CachedIndicator<Decimal>{
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3671789750570010912L;
     private TimeSeries series;
 
     public TrueRangeIndicator(TimeSeries series) {

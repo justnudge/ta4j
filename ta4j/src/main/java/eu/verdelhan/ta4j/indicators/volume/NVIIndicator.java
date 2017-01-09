@@ -36,6 +36,10 @@ import eu.verdelhan.ta4j.indicators.RecursiveCachedIndicator;
  */
 public class NVIIndicator extends RecursiveCachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8661864236658451153L;
     private final TimeSeries series;
 
     public NVIIndicator(TimeSeries series) {

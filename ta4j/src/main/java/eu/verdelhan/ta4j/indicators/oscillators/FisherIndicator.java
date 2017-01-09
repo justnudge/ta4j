@@ -39,6 +39,10 @@ import eu.verdelhan.ta4j.indicators.simple.MinPriceIndicator;
  */
 public class FisherIndicator extends RecursiveCachedIndicator<Decimal>{
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4782394911280591457L;
     private static final Decimal ZERO_DOT_FIVE = Decimal.valueOf("0.5");
     private static final Decimal VALUE_MAX = Decimal.valueOf("0.999");
     private static final Decimal VALUE_MIN = Decimal.valueOf("-0.999");
@@ -80,6 +84,11 @@ public class FisherIndicator extends RecursiveCachedIndicator<Decimal>{
         final Indicator<Decimal> periodHigh = new HighestValueIndicator(new MaxPriceIndicator(price.getTimeSeries()), timeFrame);
         final Indicator<Decimal> periodLow = new LowestValueIndicator(new MinPriceIndicator(price.getTimeSeries()), timeFrame);
         intermediateValue = new RecursiveCachedIndicator<Decimal>(price) {
+
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 4395704974991496725L;
 
             @Override
             protected Decimal calculate(int index) {

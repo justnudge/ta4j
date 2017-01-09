@@ -30,6 +30,10 @@ import eu.verdelhan.ta4j.indicators.AbstractIndicator;
  */
 public class ConstantIndicator<T> extends AbstractIndicator<T> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2310692230134870124L;
     private T value;
 
     public ConstantIndicator(T t) {

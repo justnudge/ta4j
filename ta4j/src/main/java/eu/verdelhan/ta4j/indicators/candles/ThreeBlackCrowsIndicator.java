@@ -35,6 +35,11 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class ThreeBlackCrowsIndicator extends CachedIndicator<Boolean> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5575330598344182700L;
+
     private final TimeSeries series;
     
     /** Lower shadow */

@@ -31,6 +31,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class TradeCountIndicator extends CachedIndicator<Integer> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6144108442810495175L;
     private TimeSeries series;
 
     public TradeCountIndicator(TimeSeries series) {

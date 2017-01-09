@@ -32,6 +32,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class MedianPriceIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7145999282570883546L;
     private TimeSeries series;
 
     public MedianPriceIndicator(TimeSeries series) {

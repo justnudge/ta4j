@@ -30,6 +30,11 @@ import eu.verdelhan.ta4j.Decimal;
 public class FixedDecimalIndicator extends FixedIndicator<Decimal> {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1739756114404996720L;
+
+    /**
      * Constructor.
      * @param values the values to be returned by this indicator
      */

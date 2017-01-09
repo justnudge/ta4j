@@ -33,6 +33,10 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class MVWAPIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7086605195664507568L;
     private final Indicator<Decimal> sma;
     
     /**

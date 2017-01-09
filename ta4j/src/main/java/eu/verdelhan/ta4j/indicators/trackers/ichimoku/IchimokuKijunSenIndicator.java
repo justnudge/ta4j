@@ -32,6 +32,11 @@ import eu.verdelhan.ta4j.TimeSeries;
 public class IchimokuKijunSenIndicator extends AbstractIchimokuLineIndicator {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 7924237480607834822L;
+
+    /**
      * Constructor.
      * @param series the series
      */

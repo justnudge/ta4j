@@ -36,6 +36,11 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class UlcerIndexIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1226240626967383647L;
+
     private Indicator<Decimal> indicator;
 
     private HighestValueIndicator highestValueInd;

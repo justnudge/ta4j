@@ -33,6 +33,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class KAMAIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4669827719630404617L;
+
     private final Indicator<Decimal> price;
     
     private final int timeFrameEffectiveRatio;

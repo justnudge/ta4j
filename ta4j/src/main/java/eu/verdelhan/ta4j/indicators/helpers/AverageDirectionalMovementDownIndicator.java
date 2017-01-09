@@ -31,6 +31,11 @@ import eu.verdelhan.ta4j.indicators.RecursiveCachedIndicator;
  * <p>
  */
 public class AverageDirectionalMovementDownIndicator extends RecursiveCachedIndicator<Decimal> {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4489021783442453806L;
+
     private final int timeFrame;
 
     private final DirectionalMovementDownIndicator dmdown;

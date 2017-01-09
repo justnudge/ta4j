@@ -33,6 +33,11 @@ import org.joda.time.DateTime;
  */
 public class MockTimeSeries extends TimeSeries {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6405064126337520634L;
+
     public MockTimeSeries(double... data) {
         super(doublesToTicks(data));
     }

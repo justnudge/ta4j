@@ -33,6 +33,11 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class CovarianceIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4785953832752442728L;
+
     private Indicator<Decimal> indicator1;
     
     private Indicator<Decimal> indicator2;

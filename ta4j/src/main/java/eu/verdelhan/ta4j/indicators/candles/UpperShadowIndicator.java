@@ -36,6 +36,10 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class UpperShadowIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7730811074782217566L;
     private final TimeSeries series;
 
     /**

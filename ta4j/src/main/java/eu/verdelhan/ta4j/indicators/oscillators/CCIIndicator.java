@@ -36,6 +36,11 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
  */
 public class CCIIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8742058905264832583L;
+
     public static final Decimal FACTOR = Decimal.valueOf("0.015");
 
     private TypicalPriceIndicator typicalPriceInd;

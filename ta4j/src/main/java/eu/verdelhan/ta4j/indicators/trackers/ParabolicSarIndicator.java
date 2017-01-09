@@ -37,6 +37,10 @@ import eu.verdelhan.ta4j.indicators.simple.MinPriceIndicator;
  */
 public class ParabolicSarIndicator extends RecursiveCachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8341379588071592367L;
     private static final Decimal DEFAULT_ACCELERATION = Decimal.valueOf("0.02");
     private static final Decimal ACCELERATION_THRESHOLD = Decimal.valueOf("0.19");
     private static final Decimal MAX_ACCELERATION = Decimal.valueOf("0.2");

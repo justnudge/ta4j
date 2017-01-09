@@ -35,6 +35,11 @@ import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
  */
 public class AroonUpIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1316312015870156095L;
+
     private final int timeFrame;
 
     private final ClosePriceIndicator closePriceIndicator;

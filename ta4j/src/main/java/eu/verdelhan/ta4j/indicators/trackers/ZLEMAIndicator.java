@@ -33,6 +33,11 @@ import eu.verdelhan.ta4j.indicators.RecursiveCachedIndicator;
  */
 public class ZLEMAIndicator extends RecursiveCachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1832335704246398814L;
+
     private final Indicator<Decimal> indicator;
 
     private final int timeFrame;

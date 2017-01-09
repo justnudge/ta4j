@@ -35,6 +35,11 @@ import eu.verdelhan.ta4j.indicators.simple.MinPriceIndicator;
  */
 public class ChandelierExitShortIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4801976874727747815L;
+
     private final LowestValueIndicator low;
     
     private final AverageTrueRangeIndicator atr;

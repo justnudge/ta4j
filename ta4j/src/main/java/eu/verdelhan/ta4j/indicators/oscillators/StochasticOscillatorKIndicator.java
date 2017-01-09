@@ -42,6 +42,11 @@ import eu.verdelhan.ta4j.indicators.simple.MinPriceIndicator;
  * 
  */
 public class StochasticOscillatorKIndicator extends CachedIndicator<Decimal> {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4674882269713236348L;
+
     private final Indicator<Decimal> indicator;
 
     private final int timeFrame;

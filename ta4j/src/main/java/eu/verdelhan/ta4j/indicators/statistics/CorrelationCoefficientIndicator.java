@@ -33,6 +33,11 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class CorrelationCoefficientIndicator extends CachedIndicator<Decimal> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7605307520556074985L;
+
     private VarianceIndicator variance1;
     
     private VarianceIndicator variance2;
