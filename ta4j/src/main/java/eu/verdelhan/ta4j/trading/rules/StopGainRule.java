@@ -55,12 +55,19 @@ public class StopGainRule extends AbstractRule {
         boolean satisfied = false;
         // No trading history or no trade opened, no gain
         if (tradingRecord != null) {
-            Trade currentTrade = tradingRecord.getCurrentTrade();
-            if (currentTrade.isOpened()) {
-                Decimal entryPrice = currentTrade.getEntry().getPrice();
-                Decimal currentPrice = closePrice.getValue(index);
-                satisfied = currentPrice.isGreaterThanOrEqual(entryPrice.multipliedBy(gainRatioThreshold));
-            }
+            satisfied = isSatisfied(index, tradingRecord.getCurrentTrade());
+        }
+        traceIsSatisfied(index, satisfied);
+        return satisfied;
+    }
+
+    @Override
+    public boolean isSatisfied(int index, Trade trade) {
+        boolean satisfied = false;
+        if (trade.isOpened()) {
+            Decimal entryPrice = trade.getEntry().getPrice();
+            Decimal currentPrice = closePrice.getValue(index);
+            satisfied = currentPrice.isGreaterThanOrEqual(entryPrice.multipliedBy(gainRatioThreshold));
         }
         traceIsSatisfied(index, satisfied);
         return satisfied;
