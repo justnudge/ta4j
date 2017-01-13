@@ -66,4 +66,11 @@ public interface Rule {
      * @return true if this rule is satisfied for the provided index, false otherwise
      */
     boolean isSatisfied(int index, TradingRecord tradingRecord);
+    
+    /**
+     * @param index the tick index
+     * @param trade The current trade.
+     * @return true if this rule is satisfied for the provided index, false otherwise.
+     */
+    boolean isSatisfied(int index, Trade trade);
 }

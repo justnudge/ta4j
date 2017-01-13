@@ -53,7 +53,7 @@ public class StopLossRuleTest {
         // 5% stop-loss
         rule = new StopLossRule(closePrice, Decimal.valueOf("5"));
         
-        assertFalse(rule.isSatisfied(0, null));
+        assertFalse(rule.isSatisfied(0, (TradingRecord) null));
         assertFalse(rule.isSatisfied(1, tradingRecord));
         
         // Enter at 114

@@ -53,7 +53,7 @@ public class StopGainRuleTest {
         // 30% stop-gain
         rule = new StopGainRule(closePrice, Decimal.valueOf("30"));
         
-        assertFalse(rule.isSatisfied(0, null));
+        assertFalse(rule.isSatisfied(0, (TradingRecord) null));
         assertFalse(rule.isSatisfied(1, tradingRecord));
         
         // Enter at 108

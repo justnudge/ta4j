@@ -44,7 +44,7 @@ public class WaitForRuleTest {
         // Waits for 3 ticks since last buy order
         rule = new WaitForRule(Order.OrderType.BUY, 3);
         
-        assertFalse(rule.isSatisfied(0, null));
+        assertFalse(rule.isSatisfied(0, (TradingRecord) null));
         assertFalse(rule.isSatisfied(1, tradingRecord));
         
         tradingRecord.enter(10);
@@ -70,7 +70,7 @@ public class WaitForRuleTest {
         // Waits for 2 ticks since last sell order
         rule = new WaitForRule(Order.OrderType.SELL, 2);
         
-        assertFalse(rule.isSatisfied(0, null));
+        assertFalse(rule.isSatisfied(0, (TradingRecord) null));
         assertFalse(rule.isSatisfied(1, tradingRecord));
         
         tradingRecord.enter(10);

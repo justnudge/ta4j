@@ -22,9 +22,12 @@
  */
 package eu.verdelhan.ta4j.trading.rules;
 
-import eu.verdelhan.ta4j.Rule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import eu.verdelhan.ta4j.Rule;
+import eu.verdelhan.ta4j.Trade;
+import eu.verdelhan.ta4j.TradingRecord;
 
 /**
  * An abstract trading {@link Rule rule}.
@@ -56,7 +59,12 @@ public abstract class AbstractRule implements Rule {
 
     @Override
     public boolean isSatisfied(int index) {
-        return isSatisfied(index, null);
+        return isSatisfied(index, (TradingRecord) null);
+    }
+
+    @Override
+    public boolean isSatisfied(int index, Trade trade) {
+        return isSatisfied(index, (TradingRecord) null);
     }
     
     /**
