@@ -92,13 +92,41 @@ public class Strategy {
         }
         return false;
     }
+    
+    /**
+     * @param index the tick index
+     * @param trade the current trade
+     * @return true to recommend an order, false otherwise (no recommendation)
+     */
+    public boolean shouldOperate(int index, Trade trade) {
+        if (trade.isNew()) {
+            return shouldEnter(index, trade);
+        } else if (trade.isOpened()) {
+            return shouldExit(index, trade);
+        }
+        return false;
+    }
 
     /**
      * @param index the tick index
      * @return true to recommend to enter, false otherwise
      */
     public boolean shouldEnter(int index) {
-        return shouldEnter(index, null);
+        return shouldEnter(index, (TradingRecord) null);
+    }
+    
+    /**
+     * @param index the tick index
+     * @param trade the trade
+     * @return true to recommend to enter, false otherwise
+     */
+    public boolean shouldEnter(int index, Trade trade) {
+        if (isUnstableAt(index)) {
+            return false;
+        }
+        final boolean enter = entryRule.isSatisfied(index, trade);
+        traceShouldEnter(index, enter);
+        return enter;
     }
 
     /**
@@ -120,7 +148,21 @@ public class Strategy {
      * @return true to recommend to exit, false otherwise
      */
     public boolean shouldExit(int index) {
-        return shouldExit(index, null);
+        return shouldExit(index, (TradingRecord) null);
+    }
+    
+    /**
+     * @param index the tick index
+     * @param trade the trading record
+     * @return true to recommend to exit, false otherwise
+     */
+    public boolean shouldExit(int index, Trade trade) {
+        if (isUnstableAt(index)) {
+            return false;
+        }
+        final boolean exit = exitRule.isSatisfied(index, trade);
+        traceShouldExit(index, exit);
+        return exit;
     }
 
     /**
