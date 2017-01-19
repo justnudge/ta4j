@@ -22,11 +22,10 @@
  */
 package eu.verdelhan.ta4j;
 
-import eu.verdelhan.ta4j.Order.OrderType;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.joda.time.Period;
@@ -51,10 +50,6 @@ public class TimeSeries implements Serializable {
     private final Logger log = LoggerFactory.getLogger(getClass());
     /** Name of the series */
     private final String name;
-    /** Begin index of the time series */
-    private int beginIndex = -1;
-    /** End index of the time series */
-    private int endIndex = -1;
     /** List of ticks */
     private final List<Tick> ticks;
     /** Maximum number of ticks for the time series */
@@ -70,7 +65,8 @@ public class TimeSeries implements Serializable {
      * @param ticks the list of ticks of the series
      */
     public TimeSeries(String name, List<Tick> ticks) {
-        this(name, ticks, 0, ticks.size() - 1, false);
+        this.name = name;
+        this.ticks = ticks;
     }
 
     /**
@@ -95,26 +91,6 @@ public class TimeSeries implements Serializable {
      */
     public TimeSeries() {
         this("unamed");
-    }
-
-    /**
-     * Constructor.
-     * @param name the name of the series
-     * @param ticks the list of ticks of the series
-     * @param beginIndex the begin index (inclusive) of the time series
-     * @param endIndex the end index (inclusive) of the time series
-     * @param subSeries true if the current series is a sub-series, false otherwise
-     */
-    private TimeSeries(String name, List<Tick> ticks, int beginIndex, int endIndex, boolean subSeries) {
-        // TODO: add null checks and out of bounds checks
-        if (endIndex < beginIndex - 1) {
-            throw new IllegalArgumentException("end cannot be < than begin - 1");
-        }
-        this.name = name;
-        this.ticks = ticks;
-        this.beginIndex = beginIndex;
-        this.endIndex = endIndex;
-        this.subSeries = subSeries;
     }
 
     /**
@@ -146,44 +122,57 @@ public class TimeSeries implements Serializable {
         }
         return ticks.get(innerIndex);
     }
+    
+    public int getTickPosition(Tick tick) {
+        for (int i=0; i < ticks.size(); i++) {
+            if (tick.equals(ticks.get(i))) {
+                return i;
+            }
+        }
+        return -1; // TODO: Exception case.
+    }
 
     /**
      * @return the first tick of the series
      */
     public Tick getFirstTick() {
-        return getTick(beginIndex);
+        return ticks.get(0);
     }
 
     /**
      * @return the last tick of the series
      */
     public Tick getLastTick() {
-        return getTick(endIndex);
+        if (ticks.size() == 0) {
+            return null;
+        } else {
+            return ticks.get(ticks.size() - 1);
+        }
     }
 
     /**
      * @return the number of ticks in the series
      */
     public int getTickCount() {
-        if (endIndex < 0) {
-            return 0;
-        }
-        final int startIndex = Math.max(removedTicksCount, beginIndex);
-        return endIndex - startIndex + 1;
+        return ticks.size();
     }
 
     /**
      * @return the begin index of the series
      */
     public int getBegin() {
-        return beginIndex;
+        if (ticks.size() == 0) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 
     /**
      * @return the end index of the series
      */
     public int getEnd() {
-        return endIndex;
+        return ticks.size() - 1;
     }
 
     /**
@@ -217,7 +206,6 @@ public class TimeSeries implements Serializable {
             throw new IllegalArgumentException("Maximum tick count must be strictly positive");
         }
         this.maximumTickCount = maximumTickCount;
-        removeExceedingTicks();
     }
 
     /**
@@ -225,13 +213,6 @@ public class TimeSeries implements Serializable {
      */
     public int getMaximumTickCount() {
         return maximumTickCount;
-    }
-
-    /**
-     * @return the number of removed ticks
-     */
-    public int getRemovedTicksCount() {
-        return removedTicksCount;
     }
 
     /**
@@ -256,12 +237,6 @@ public class TimeSeries implements Serializable {
         }
 
         ticks.add(tick);
-        if (beginIndex == -1) {
-            // Begin index set to 0 only if if wasn't initialized
-            beginIndex = 0;
-        }
-        endIndex++;
-        removeExceedingTicks();
     }
 
     /**
@@ -276,8 +251,17 @@ public class TimeSeries implements Serializable {
     public TimeSeries subseries(int beginIndex, int endIndex) {
         if (maximumTickCount != Integer.MAX_VALUE) {
             throw new IllegalStateException("Cannot create a sub-series from a time series for which a maximum tick count has been set");
+        } else if (beginIndex > endIndex) {
+            throw new IllegalArgumentException("Begin Index cannot be greater than end index.");
         }
-        return new TimeSeries(name, ticks, beginIndex, endIndex, true);
+        TimeSeries series = new TimeSeries(name);
+        int i = 0;
+        for (Tick tick : ticks) {
+            if (i >= beginIndex && i <= endIndex) {
+                series.addTick(tick);
+            }
+        }
+        return series;
     }
 
     /**
@@ -298,9 +282,9 @@ public class TimeSeries implements Serializable {
 
         // Checking ticks belonging to the sub-series (starting at the provided index)
         int subseriesNbTicks = 0;
-        for (int i = beginIndex; i <= endIndex; i++) {
+        for (Tick tick : ticks) {
             // For each tick...
-            DateTime tickTime = getTick(i).getEndTime();
+            DateTime tickTime = tick.getEndTime();
             if (!subseriesInterval.contains(tickTime)) {
                 // Tick out of the interval
                 break;
@@ -321,155 +305,18 @@ public class TimeSeries implements Serializable {
      * @return a list of sub-series
      */
     public List<TimeSeries> split(int nbTicks) {
-        ArrayList<TimeSeries> subseries = new ArrayList<TimeSeries>();
-        for (int i = beginIndex; i <= endIndex; i += nbTicks) {
-            // For each nbTicks ticks
-            int subseriesBegin = i;
-            int subseriesEnd = Math.min(subseriesBegin + nbTicks - 1, endIndex);
-            subseries.add(subseries(subseriesBegin, subseriesEnd));
-        }
-        return subseries;
-    }
-
-    /**
-     * Splits the time series into sub-series lasting sliceDuration.<br>
-     * The current time series is splitted every splitDuration.<br>
-     * The last sub-series may last less than sliceDuration.
-     * @param splitDuration the duration between 2 splits
-     * @param sliceDuration the duration of each sub-series
-     * @return a list of sub-series
-     */
-    public List<TimeSeries> split(Period splitDuration, Period sliceDuration) {
-        ArrayList<TimeSeries> subseries = new ArrayList<TimeSeries>();
-        if (splitDuration != null && !splitDuration.equals(Period.ZERO)
-                && sliceDuration != null && !sliceDuration.equals(Period.ZERO)) {
-
-            List<Integer> beginIndexes = getSplitBeginIndexes(splitDuration);
-            for (Integer subseriesBegin : beginIndexes) {
-                subseries.add(subseries(subseriesBegin, sliceDuration));
+        List<TimeSeries> subseries = new ArrayList<TimeSeries>();
+        int i = 0;
+        TimeSeries currentSeries = new TimeSeries();
+        for (Tick tick : ticks) {
+            i += 1;
+            currentSeries.addTick(tick);
+            if (i % nbTicks == 0) {
+                currentSeries = new TimeSeries();
+                subseries.add(currentSeries);
             }
         }
         return subseries;
-    }
-
-    /**
-     * Splits the time series into sub-series lasting duration.<br>
-     * The current time series is splitted every duration.<br>
-     * The last sub-series may last less than duration.
-     * @param duration the duration between 2 splits (and of each sub-series)
-     * @return a list of sub-series
-     */
-    public List<TimeSeries> split(Period duration) {
-        return split(duration, duration);
-    }
-
-    /**
-     * Runs the strategy over the series.
-     * <p>
-     * Opens the trades with {@link OrderType.BUY} orders.
-     * @param strategy the trading strategy
-     * @return the trading record coming from the run
-     */
-    public TradingRecord run(Strategy strategy) {
-        return run(strategy, OrderType.BUY);
-    }
-
-    /**
-     * Runs the strategy over the series.
-     * <p>
-     * Opens the trades with {@link OrderType.BUY} orders.
-     * @param strategy the trading strategy
-     * @param orderType the {@link OrderType} used to open the trades
-     * @return the trading record coming from the run
-     */
-    public TradingRecord run(Strategy strategy, OrderType orderType) {
-        return run(strategy, orderType, Decimal.NaN);
-    }
-
-    /**
-     * Runs the strategy over the series.
-     * <p>
-     * @param strategy the trading strategy
-     * @param orderType the {@link OrderType} used to open the trades
-     * @param amount the amount used to open/close the trades
-     * @return the trading record coming from the run
-     */
-    public TradingRecord run(Strategy strategy, OrderType orderType, Decimal amount) {
-
-        log.trace("Running strategy: {} (starting with {})", strategy, orderType);
-        TradingRecord tradingRecord = new TradingRecord(orderType);
-        for (int i = beginIndex; i <= endIndex; i++) {
-            // For each tick in the sub-series...       
-            if (strategy.shouldOperate(i, tradingRecord)) {
-                tradingRecord.operate(i, ticks.get(i).getClosePrice(), amount);
-            }
-        }
-
-        if (!tradingRecord.isClosed()) {
-            // If the last trade is still opened, we search out of the end index.
-            // May works if the current series is a sub-series (but not the last sub-series).
-            for (int i = endIndex + 1; i < ticks.size(); i++) {
-                // For each tick out of sub-series bound...
-                // --> Trying to close the last trade
-                if (strategy.shouldOperate(i, tradingRecord)) {
-                    tradingRecord.operate(i, ticks.get(i).getClosePrice(), amount);
-                    break;
-                }
-            }
-        }
-        return tradingRecord;
-    }
-
-    /**
-     * Removes the N first ticks which exceed the maximum tick count.
-     */
-    private void removeExceedingTicks() {
-        int tickCount = ticks.size();
-        if (tickCount > maximumTickCount) {
-            // Removing old ticks
-            int nbTicksToRemove = tickCount - maximumTickCount;
-            for (int i = 0; i < nbTicksToRemove; i++) {
-                ticks.remove(0);
-            }
-            // Updating removed ticks count
-            removedTicksCount += nbTicksToRemove;
-        }
-    }
-
-    /**
-     * Builds a list of split indexes from splitDuration.
-     * @param splitDuration the duration between 2 splits
-     * @return a list of begin indexes after split
-     */
-    private List<Integer> getSplitBeginIndexes(Period splitDuration) {
-        ArrayList<Integer> beginIndexes = new ArrayList<Integer>();
-
-        // Adding the first begin index
-        beginIndexes.add(beginIndex);
-
-        // Building the first interval before next split
-        DateTime beginInterval = getTick(beginIndex).getEndTime();
-        DateTime endInterval = beginInterval.plus(splitDuration);
-        Interval splitInterval = new Interval(beginInterval, endInterval);
-
-        for (int i = beginIndex; i <= endIndex; i++) {
-            // For each tick...
-            DateTime tickTime = getTick(i).getEndTime();
-            if (!splitInterval.contains(tickTime)) {
-                // Tick out of the interval
-                if (!endInterval.isAfter(tickTime)) {
-                    // Tick after the interval
-                    // --> Adding a new begin index
-                    beginIndexes.add(i);
-                }
-
-                // Building the new interval before next split
-                beginInterval = endInterval.isBefore(tickTime) ? tickTime : endInterval;
-                endInterval = beginInterval.plus(splitDuration);
-                splitInterval = new Interval(beginInterval, endInterval);
-            }
-        }
-        return beginIndexes;
     }
 
     /**

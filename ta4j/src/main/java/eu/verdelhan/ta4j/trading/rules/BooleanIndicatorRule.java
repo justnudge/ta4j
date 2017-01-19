@@ -23,6 +23,7 @@
 package eu.verdelhan.ta4j.trading.rules;
 
 import eu.verdelhan.ta4j.Indicator;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.TradingRecord;
 
 /**
@@ -43,7 +44,7 @@ public class BooleanIndicatorRule extends AbstractRule {
     }
 
     @Override
-    public boolean isSatisfied(int index, TradingRecord tradingRecord) {
+    public boolean isSatisfied(TimeSeries timeSeries, int index, TradingRecord tradingRecord) {
         final boolean satisfied = indicator.getValue(index);
         traceIsSatisfied(index, satisfied);
         return satisfied;

@@ -76,38 +76,23 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
         }
 
         // Series is not null
-        
-        final int removedTicksCount = series.getRemovedTicksCount();
         final int maximumResultCount = getTimeSeries().getMaximumTickCount();
         
         T result;
-        if (index < removedTicksCount) {
-            // Result already removed from cache
-            log.trace("{}: result from tick {} already removed from cache, use {}-th instead",
-                    getClass().getSimpleName(), index, removedTicksCount);
-            increaseLengthTo(removedTicksCount, maximumResultCount);
-            highestResultIndex = removedTicksCount;
-            result = results.get(0);
-            if (result == null) {
-                result = calculate(removedTicksCount);
-                results.set(0, result);
-            }
+        increaseLengthTo(index, maximumResultCount);
+        if (index > highestResultIndex) {
+            // Result not calculated yet
+            highestResultIndex = index;
+            result = calculate(index);
+            results.set(results.size() - 1, result);
         } else {
-            increaseLengthTo(index, maximumResultCount);
-            if (index > highestResultIndex) {
-                // Result not calculated yet
-                highestResultIndex = index;
+            // Result covered by current cache
+            int resultInnerIndex = results.size() - 1 - (highestResultIndex - index);
+            result = results.get(resultInnerIndex);
+            if (result == null) {
                 result = calculate(index);
-                results.set(results.size()-1, result);
-            } else {
-                // Result covered by current cache
-                int resultInnerIndex = results.size() - 1 - (highestResultIndex - index);
-                result = results.get(resultInnerIndex);
-                if (result == null) {
-                    result = calculate(index);
-                }
-                results.set(resultInnerIndex, result);
             }
+            results.set(resultInnerIndex, result);
         }
         return result;
     }

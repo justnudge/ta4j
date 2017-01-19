@@ -111,33 +111,21 @@ public class CachedIndicatorTest {
         // -> shouldEnter results: false, false, false, false, true, true, true, true
         // -> shouldExit results: true, true, true, true, false, false, false, false
 
-        assertFalse(strategy.shouldEnter(0));
-        assertTrue(strategy.shouldExit(0));
-        assertFalse(strategy.shouldEnter(1));
-        assertTrue(strategy.shouldExit(1));
-        assertFalse(strategy.shouldEnter(2));
-        assertTrue(strategy.shouldExit(2));
-        assertFalse(strategy.shouldEnter(3));
-        assertTrue(strategy.shouldExit(3));
-        assertTrue(strategy.shouldEnter(4));
-        assertFalse(strategy.shouldExit(4));
-        assertTrue(strategy.shouldEnter(5));
-        assertFalse(strategy.shouldExit(5));
-        assertTrue(strategy.shouldEnter(6));
-        assertFalse(strategy.shouldExit(6));
-        assertTrue(strategy.shouldEnter(7));
-        assertFalse(strategy.shouldExit(7));
-    }
-
-    @Test
-    public void getValueOnResultsCalculatedFromRemovedTicksShouldReturnFirstRemainingResult() {
-        TimeSeries timeSeries = new MockTimeSeries(1, 1, 1, 1, 1);
-        timeSeries.setMaximumTickCount(3);
-        assertEquals(2, timeSeries.getRemovedTicksCount());
-        
-        SMAIndicator sma = new SMAIndicator(new ClosePriceIndicator(timeSeries), 2);
-        for (int i = 0; i < 5; i++) {
-            assertDecimalEquals(sma.getValue(i), 1);
-        }
+        assertFalse(strategy.shouldEnter(timeSeries, timeSeries.getTick(0)));
+        assertTrue(strategy.shouldExit(timeSeries, timeSeries.getTick(0)));
+        assertFalse(strategy.shouldEnter(timeSeries, timeSeries.getTick(1)));
+        assertTrue(strategy.shouldExit(timeSeries, timeSeries.getTick(1)));
+        assertFalse(strategy.shouldEnter(timeSeries, timeSeries.getTick(2)));
+        assertTrue(strategy.shouldExit(timeSeries, timeSeries.getTick(2)));
+        assertFalse(strategy.shouldEnter(timeSeries, timeSeries.getTick(3)));
+        assertTrue(strategy.shouldExit(timeSeries, timeSeries.getTick(3)));
+        assertTrue(strategy.shouldEnter(timeSeries, timeSeries.getTick(4)));
+        assertFalse(strategy.shouldExit(timeSeries, timeSeries.getTick(4)));
+        assertTrue(strategy.shouldEnter(timeSeries, timeSeries.getTick(5)));
+        assertFalse(strategy.shouldExit(timeSeries, timeSeries.getTick(5)));
+        assertTrue(strategy.shouldEnter(timeSeries, timeSeries.getTick(6)));
+        assertFalse(strategy.shouldExit(timeSeries, timeSeries.getTick(6)));
+        assertTrue(strategy.shouldEnter(timeSeries, timeSeries.getTick(7)));
+        assertFalse(strategy.shouldExit(timeSeries, timeSeries.getTick(7)));
     }
 }

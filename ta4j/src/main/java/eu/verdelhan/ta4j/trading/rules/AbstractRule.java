@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import eu.verdelhan.ta4j.Rule;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.Trade;
 import eu.verdelhan.ta4j.TradingRecord;
 
@@ -58,13 +59,13 @@ public abstract class AbstractRule implements Rule {
     }
 
     @Override
-    public boolean isSatisfied(int index) {
-        return isSatisfied(index, (TradingRecord) null);
+    public boolean isSatisfied(TimeSeries timeSeries, int index) {
+        return isSatisfied(timeSeries, index, (TradingRecord) null);
     }
 
     @Override
-    public boolean isSatisfied(int index, Trade trade) {
-        return isSatisfied(index, (TradingRecord) null);
+    public boolean isSatisfied(TimeSeries timeSeries, int index, Trade trade) {
+        return isSatisfied(timeSeries, index, (TradingRecord) null);
     }
     
     /**

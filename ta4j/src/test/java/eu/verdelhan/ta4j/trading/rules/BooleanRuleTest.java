@@ -22,6 +22,7 @@
  */
 package eu.verdelhan.ta4j.trading.rules;
 
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.trading.rules.BooleanRule;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -41,15 +42,16 @@ public class BooleanRuleTest {
     
     @Test
     public void isSatisfied() {
-        assertTrue(satisfiedRule.isSatisfied(0));
-        assertTrue(satisfiedRule.isSatisfied(1));
-        assertTrue(satisfiedRule.isSatisfied(2));
-        assertTrue(satisfiedRule.isSatisfied(10));
+        TimeSeries series = new TimeSeries();
+        assertTrue(satisfiedRule.isSatisfied(series, 0));
+        assertTrue(satisfiedRule.isSatisfied(series, 1));
+        assertTrue(satisfiedRule.isSatisfied(series, 2));
+        assertTrue(satisfiedRule.isSatisfied(series, 10));
         
-        assertFalse(unsatisfiedRule.isSatisfied(0));
-        assertFalse(unsatisfiedRule.isSatisfied(1));
-        assertFalse(unsatisfiedRule.isSatisfied(2));
-        assertFalse(unsatisfiedRule.isSatisfied(10));
+        assertFalse(unsatisfiedRule.isSatisfied(series, 0));
+        assertFalse(unsatisfiedRule.isSatisfied(series, 1));
+        assertFalse(unsatisfiedRule.isSatisfied(series, 2));
+        assertFalse(unsatisfiedRule.isSatisfied(series, 10));
     }
 }
         

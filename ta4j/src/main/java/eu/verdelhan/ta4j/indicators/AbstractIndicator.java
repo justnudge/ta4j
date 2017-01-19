@@ -23,6 +23,7 @@
 package eu.verdelhan.ta4j.indicators;
 
 import eu.verdelhan.ta4j.Indicator;
+import eu.verdelhan.ta4j.Tick;
 import eu.verdelhan.ta4j.TimeSeries;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,5 +60,10 @@ public abstract class AbstractIndicator<T> implements Indicator<T> {
     @Override
     public String toString() {
         return getClass().getSimpleName();
+    }
+    
+    @Override
+    public T getValue(Tick tick) {
+        return getValue(getTimeSeries().getTickPosition(tick));
     }
 }

@@ -24,6 +24,8 @@ package eu.verdelhan.ta4j.trading.rules;
 
 import eu.verdelhan.ta4j.trading.rules.BooleanRule;
 import eu.verdelhan.ta4j.Rule;
+import eu.verdelhan.ta4j.TimeSeries;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -42,11 +44,12 @@ public class NotRuleTest {
     
     @Test
     public void isSatisfied() {
-        assertFalse(satisfiedRule.negation().isSatisfied(0));
-        assertTrue(unsatisfiedRule.negation().isSatisfied(0));
+        TimeSeries series = new TimeSeries();
+        assertFalse(satisfiedRule.negation().isSatisfied(series, 0));
+        assertTrue(unsatisfiedRule.negation().isSatisfied(series, 0));
         
-        assertFalse(satisfiedRule.negation().isSatisfied(10));
-        assertTrue(unsatisfiedRule.negation().isSatisfied(10));
+        assertFalse(satisfiedRule.negation().isSatisfied(series, 10));
+        assertTrue(unsatisfiedRule.negation().isSatisfied(series, 10));
     }
 }
         

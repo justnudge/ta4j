@@ -24,6 +24,7 @@ package eu.verdelhan.ta4j.trading.rules;
 
 import eu.verdelhan.ta4j.Decimal;
 import eu.verdelhan.ta4j.Indicator;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.TradingRecord;
 import eu.verdelhan.ta4j.indicators.helpers.CrossIndicator;
 import eu.verdelhan.ta4j.indicators.simple.ConstantIndicator;
@@ -57,7 +58,7 @@ public class CrossedUpIndicatorRule extends AbstractRule {
     }
 
     @Override
-    public boolean isSatisfied(int index, TradingRecord tradingRecord) {
+    public boolean isSatisfied(TimeSeries timeSeries, int index, TradingRecord tradingRecord) {
         final boolean satisfied = cross.getValue(index);
         traceIsSatisfied(index, satisfied);
         return satisfied;

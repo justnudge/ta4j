@@ -23,6 +23,7 @@
 package eu.verdelhan.ta4j.trading.rules;
 
 import eu.verdelhan.ta4j.Order;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.TradingRecord;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -41,57 +42,59 @@ public class WaitForRuleTest {
     
     @Test
     public void waitForSinceLastBuyRuleIsSatisfied() {
+        TimeSeries series = new TimeSeries();
         // Waits for 3 ticks since last buy order
         rule = new WaitForRule(Order.OrderType.BUY, 3);
         
-        assertFalse(rule.isSatisfied(0, (TradingRecord) null));
-        assertFalse(rule.isSatisfied(1, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 0, (TradingRecord) null));
+        assertFalse(rule.isSatisfied(series, 1, tradingRecord));
         
         tradingRecord.enter(10);
-        assertFalse(rule.isSatisfied(10, tradingRecord));
-        assertFalse(rule.isSatisfied(11, tradingRecord));
-        assertFalse(rule.isSatisfied(12, tradingRecord));
-        assertTrue(rule.isSatisfied(13, tradingRecord));
-        assertTrue(rule.isSatisfied(14, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 10, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 11, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 12, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 13, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 14, tradingRecord));
         
         tradingRecord.exit(15);
-        assertTrue(rule.isSatisfied(15, tradingRecord));
-        assertTrue(rule.isSatisfied(16, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 15, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 16, tradingRecord));
         
         tradingRecord.enter(17);
-        assertFalse(rule.isSatisfied(17, tradingRecord));
-        assertFalse(rule.isSatisfied(18, tradingRecord));
-        assertFalse(rule.isSatisfied(19, tradingRecord));
-        assertTrue(rule.isSatisfied(20, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 17, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 18, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 19, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 20, tradingRecord));
     }
     
     @Test
     public void waitForSinceLastSellRuleIsSatisfied() {
+        TimeSeries series = new TimeSeries();
         // Waits for 2 ticks since last sell order
         rule = new WaitForRule(Order.OrderType.SELL, 2);
         
-        assertFalse(rule.isSatisfied(0, (TradingRecord) null));
-        assertFalse(rule.isSatisfied(1, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 0, (TradingRecord) null));
+        assertFalse(rule.isSatisfied(series, 1, tradingRecord));
         
         tradingRecord.enter(10);
-        assertFalse(rule.isSatisfied(10, tradingRecord));
-        assertFalse(rule.isSatisfied(11, tradingRecord));
-        assertFalse(rule.isSatisfied(12, tradingRecord));
-        assertFalse(rule.isSatisfied(13, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 10, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 11, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 12, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 13, tradingRecord));
         
         tradingRecord.exit(15);
-        assertFalse(rule.isSatisfied(15, tradingRecord));
-        assertFalse(rule.isSatisfied(16, tradingRecord));
-        assertTrue(rule.isSatisfied(17, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 15, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 16, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 17, tradingRecord));
         
         tradingRecord.enter(17);
-        assertTrue(rule.isSatisfied(17, tradingRecord));
-        assertTrue(rule.isSatisfied(18, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 17, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 18, tradingRecord));
         
         tradingRecord.exit(20);
-        assertFalse(rule.isSatisfied(20, tradingRecord));
-        assertFalse(rule.isSatisfied(21, tradingRecord));
-        assertTrue(rule.isSatisfied(22, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 20, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 21, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 22, tradingRecord));
     }
 }
         

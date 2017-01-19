@@ -70,8 +70,7 @@ public abstract class RecursiveCachedIndicator<T> extends CachedIndicator<T> {
             final int seriesEndIndex = series.getEnd();
             if (index <= seriesEndIndex) {
                 // We are not after the end of the series
-                final int removedTicksCount = series.getRemovedTicksCount();
-                int startIndex = Math.max(removedTicksCount, highestResultIndex);
+                int startIndex = Math.max(highestResultIndex, 0);
                 if (index - startIndex > RECURSION_THRESHOLD) {
                     // Too many uncalculated values; the risk for a StackOverflowError becomes high.
                     // Calculating the previous values iteratively

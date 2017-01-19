@@ -58,19 +58,19 @@ public interface Rule {
      * @param index the tick index
      * @return true if this rule is satisfied for the provided index, false otherwise
      */
-    boolean isSatisfied(int index);
+    boolean isSatisfied(TimeSeries timeSeries, int index);
     
     /**
      * @param index the tick index
      * @param tradingRecord the potentially needed trading history
      * @return true if this rule is satisfied for the provided index, false otherwise
      */
-    boolean isSatisfied(int index, TradingRecord tradingRecord);
+    boolean isSatisfied(TimeSeries series, int index, TradingRecord tradingRecord);
     
     /**
      * @param index the tick index
      * @param trade The current trade.
      * @return true if this rule is satisfied for the provided index, false otherwise.
      */
-    boolean isSatisfied(int index, Trade trade);
+    boolean isSatisfied(TimeSeries series, int index, Trade trade);
 }

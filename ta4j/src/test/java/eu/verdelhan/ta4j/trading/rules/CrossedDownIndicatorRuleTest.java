@@ -24,6 +24,7 @@ package eu.verdelhan.ta4j.trading.rules;
 
 import eu.verdelhan.ta4j.Decimal;
 import eu.verdelhan.ta4j.Indicator;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.indicators.simple.FixedDecimalIndicator;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -43,14 +44,15 @@ public class CrossedDownIndicatorRuleTest {
     
     @Test
     public void isSatisfied() {
-        assertFalse(rule.isSatisfied(0));
-        assertFalse(rule.isSatisfied(1));
-        assertFalse(rule.isSatisfied(2));
-        assertTrue(rule.isSatisfied(3));
-        assertFalse(rule.isSatisfied(4));
-        assertTrue(rule.isSatisfied(5));
-        assertFalse(rule.isSatisfied(6));
-        assertFalse(rule.isSatisfied(7));
+        TimeSeries series = new TimeSeries();
+        assertFalse(rule.isSatisfied(series, 0));
+        assertFalse(rule.isSatisfied(series, 1));
+        assertFalse(rule.isSatisfied(series, 2));
+        assertTrue(rule.isSatisfied(series, 3));
+        assertFalse(rule.isSatisfied(series, 4));
+        assertTrue(rule.isSatisfied(series, 5));
+        assertFalse(rule.isSatisfied(series, 6));
+        assertFalse(rule.isSatisfied(series, 7));
     }
 }
         

@@ -25,6 +25,7 @@ package eu.verdelhan.ta4j.trading.rules;
 import eu.verdelhan.ta4j.trading.rules.InPipeRule;
 import eu.verdelhan.ta4j.Decimal;
 import eu.verdelhan.ta4j.Indicator;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.indicators.simple.FixedDecimalIndicator;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -44,16 +45,17 @@ public class InPipeRuleTest {
     
     @Test
     public void isSatisfied() {
-        assertTrue(rule.isSatisfied(0));
-        assertTrue(rule.isSatisfied(1));
-        assertTrue(rule.isSatisfied(2));
-        assertFalse(rule.isSatisfied(3));
-        assertFalse(rule.isSatisfied(4));
-        assertTrue(rule.isSatisfied(5));
-        assertTrue(rule.isSatisfied(6));
-        assertTrue(rule.isSatisfied(7));
-        assertFalse(rule.isSatisfied(8));
-        assertFalse(rule.isSatisfied(9));
+        TimeSeries series = new TimeSeries();
+        assertTrue(rule.isSatisfied(series, 0));
+        assertTrue(rule.isSatisfied(series, 1));
+        assertTrue(rule.isSatisfied(series, 2));
+        assertFalse(rule.isSatisfied(series, 3));
+        assertFalse(rule.isSatisfied(series, 4));
+        assertTrue(rule.isSatisfied(series, 5));
+        assertTrue(rule.isSatisfied(series, 6));
+        assertTrue(rule.isSatisfied(series, 7));
+        assertFalse(rule.isSatisfied(series, 8));
+        assertFalse(rule.isSatisfied(series, 9));
     }
 }
         

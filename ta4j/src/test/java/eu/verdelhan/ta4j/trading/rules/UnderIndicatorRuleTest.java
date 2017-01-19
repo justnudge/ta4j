@@ -25,6 +25,7 @@ package eu.verdelhan.ta4j.trading.rules;
 import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
 import eu.verdelhan.ta4j.Decimal;
 import eu.verdelhan.ta4j.Indicator;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.indicators.simple.FixedDecimalIndicator;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -44,14 +45,15 @@ public class UnderIndicatorRuleTest {
     
     @Test
     public void isSatisfied() {
-        assertTrue(rule.isSatisfied(0));
-        assertFalse(rule.isSatisfied(1));
-        assertFalse(rule.isSatisfied(2));
-        assertFalse(rule.isSatisfied(3));
-        assertTrue(rule.isSatisfied(4));
-        assertFalse(rule.isSatisfied(5));
-        assertFalse(rule.isSatisfied(6));
-        assertFalse(rule.isSatisfied(7));
+        TimeSeries series = new TimeSeries();
+        assertTrue(rule.isSatisfied(series, 0));
+        assertFalse(rule.isSatisfied(series, 1));
+        assertFalse(rule.isSatisfied(series, 2));
+        assertFalse(rule.isSatisfied(series, 3));
+        assertTrue(rule.isSatisfied(series, 4));
+        assertFalse(rule.isSatisfied(series, 5));
+        assertFalse(rule.isSatisfied(series, 6));
+        assertFalse(rule.isSatisfied(series, 7));
     }
 }
         

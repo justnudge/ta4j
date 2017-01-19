@@ -22,6 +22,7 @@
  */
 package eu.verdelhan.ta4j.trading.rules;
 
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.trading.rules.JustOnceRule;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -39,19 +40,21 @@ public class JustOnceRuleTest {
     
     @Test
     public void isSatisfied() {
-        assertTrue(rule.isSatisfied(10));
-        assertFalse(rule.isSatisfied(11));
-        assertFalse(rule.isSatisfied(12));
-        assertFalse(rule.isSatisfied(13));
-        assertFalse(rule.isSatisfied(14));
+        TimeSeries series = new TimeSeries();
+        assertTrue(rule.isSatisfied(series, 10));
+        assertFalse(rule.isSatisfied(series, 11));
+        assertFalse(rule.isSatisfied(series, 12));
+        assertFalse(rule.isSatisfied(series, 13));
+        assertFalse(rule.isSatisfied(series, 14));
     }
     
     @Test
     public void isSatisfiedInReverseOrder() {
-        assertTrue(rule.isSatisfied(5));
-        assertFalse(rule.isSatisfied(2));
-        assertFalse(rule.isSatisfied(1));
-        assertFalse(rule.isSatisfied(0));
+        TimeSeries series = new TimeSeries();
+        assertTrue(rule.isSatisfied(series, 5));
+        assertFalse(rule.isSatisfied(series, 2));
+        assertFalse(rule.isSatisfied(series, 1));
+        assertFalse(rule.isSatisfied(series, 0));
     }
 }
         

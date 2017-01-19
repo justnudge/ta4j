@@ -24,6 +24,7 @@ package eu.verdelhan.ta4j.trading.rules;
 
 import eu.verdelhan.ta4j.trading.rules.StopGainRule;
 import eu.verdelhan.ta4j.Decimal;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.TradingRecord;
 import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
@@ -48,27 +49,28 @@ public class StopGainRuleTest {
     
     @Test
     public void isSatisfied() {
+        TimeSeries series = new TimeSeries();
         final Decimal tradedAmount = Decimal.ONE;
         
         // 30% stop-gain
         rule = new StopGainRule(closePrice, Decimal.valueOf("30"));
         
-        assertFalse(rule.isSatisfied(0, (TradingRecord) null));
-        assertFalse(rule.isSatisfied(1, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 0, (TradingRecord) null));
+        assertFalse(rule.isSatisfied(series, 1, tradingRecord));
         
         // Enter at 108
         tradingRecord.enter(2, Decimal.valueOf("108"), tradedAmount);
-        assertFalse(rule.isSatisfied(2, tradingRecord));
-        assertFalse(rule.isSatisfied(3, tradingRecord));
-        assertTrue(rule.isSatisfied(4, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 2, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 3, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 4, tradingRecord));
         // Exit
         tradingRecord.exit(5);
         
         // Enter at 118
         tradingRecord.enter(5, Decimal.valueOf("118"), tradedAmount);
-        assertFalse(rule.isSatisfied(5, tradingRecord));
-        assertTrue(rule.isSatisfied(6, tradingRecord));
-        assertTrue(rule.isSatisfied(7, tradingRecord));
+        assertFalse(rule.isSatisfied(series, 5, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 6, tradingRecord));
+        assertTrue(rule.isSatisfied(series, 7, tradingRecord));
     }
 }
         

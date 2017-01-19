@@ -24,6 +24,8 @@ package eu.verdelhan.ta4j.trading.rules;
 
 import eu.verdelhan.ta4j.trading.rules.BooleanRule;
 import eu.verdelhan.ta4j.Rule;
+import eu.verdelhan.ta4j.TimeSeries;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -42,15 +44,16 @@ public class OrRuleTest {
     
     @Test
     public void isSatisfied() {
-        assertTrue(satisfiedRule.or(BooleanRule.FALSE).isSatisfied(0));
-        assertTrue(BooleanRule.FALSE.or(satisfiedRule).isSatisfied(0));
-        assertFalse(unsatisfiedRule.or(BooleanRule.FALSE).isSatisfied(0));
-        assertFalse(BooleanRule.FALSE.or(unsatisfiedRule).isSatisfied(0));
+        TimeSeries series = new TimeSeries();
+        assertTrue(satisfiedRule.or(BooleanRule.FALSE).isSatisfied(series, 0));
+        assertTrue(BooleanRule.FALSE.or(satisfiedRule).isSatisfied(series, 0));
+        assertFalse(unsatisfiedRule.or(BooleanRule.FALSE).isSatisfied(series, 0));
+        assertFalse(BooleanRule.FALSE.or(unsatisfiedRule).isSatisfied(series, 0));
         
-        assertTrue(satisfiedRule.or(BooleanRule.TRUE).isSatisfied(10));
-        assertTrue(BooleanRule.TRUE.or(satisfiedRule).isSatisfied(10));
-        assertTrue(unsatisfiedRule.or(BooleanRule.TRUE).isSatisfied(10));
-        assertTrue(BooleanRule.TRUE.or(unsatisfiedRule).isSatisfied(10));
+        assertTrue(satisfiedRule.or(BooleanRule.TRUE).isSatisfied(series, 10));
+        assertTrue(BooleanRule.TRUE.or(satisfiedRule).isSatisfied(series, 10));
+        assertTrue(unsatisfiedRule.or(BooleanRule.TRUE).isSatisfied(series, 10));
+        assertTrue(BooleanRule.TRUE.or(unsatisfiedRule).isSatisfied(series, 10));
     }
 }
         

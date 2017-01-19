@@ -24,6 +24,7 @@ package eu.verdelhan.ta4j.trading.rules;
 
 import eu.verdelhan.ta4j.trading.rules.BooleanIndicatorRule;
 import eu.verdelhan.ta4j.Indicator;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.indicators.simple.FixedIndicator;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -43,11 +44,12 @@ public class BooleanIndicatorRuleTest {
     
     @Test
     public void isSatisfied() {
-        assertTrue(rule.isSatisfied(0));
-        assertTrue(rule.isSatisfied(1));
-        assertFalse(rule.isSatisfied(2));
-        assertFalse(rule.isSatisfied(3));
-        assertTrue(rule.isSatisfied(4));
+        TimeSeries series = new TimeSeries();
+        assertTrue(rule.isSatisfied(series, 0));
+        assertTrue(rule.isSatisfied(series, 1));
+        assertFalse(rule.isSatisfied(series, 2));
+        assertFalse(rule.isSatisfied(series, 3));
+        assertTrue(rule.isSatisfied(series, 4));
     }
 }
         

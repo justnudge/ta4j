@@ -23,6 +23,7 @@
 package eu.verdelhan.ta4j.trading.rules;
 
 import eu.verdelhan.ta4j.Decimal;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.Trade;
 import eu.verdelhan.ta4j.TradingRecord;
 import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
@@ -51,18 +52,18 @@ public class StopGainRule extends AbstractRule {
     }
 
     @Override
-    public boolean isSatisfied(int index, TradingRecord tradingRecord) {
+    public boolean isSatisfied(TimeSeries timeSeries, int index, TradingRecord tradingRecord) {
         boolean satisfied = false;
         // No trading history or no trade opened, no gain
         if (tradingRecord != null) {
-            satisfied = isSatisfied(index, tradingRecord.getCurrentTrade());
+            satisfied = isSatisfied(timeSeries, index, tradingRecord.getCurrentTrade());
         }
         traceIsSatisfied(index, satisfied);
         return satisfied;
     }
 
     @Override
-    public boolean isSatisfied(int index, Trade trade) {
+    public boolean isSatisfied(TimeSeries timeSeries, int index, Trade trade) {
         boolean satisfied = false;
         if (trade.isOpened()) {
             Decimal entryPrice = trade.getEntry().getPrice();

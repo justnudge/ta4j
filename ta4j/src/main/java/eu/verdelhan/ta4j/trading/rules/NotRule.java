@@ -23,6 +23,7 @@
 package eu.verdelhan.ta4j.trading.rules;
 
 import eu.verdelhan.ta4j.Rule;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.TradingRecord;
 
 /**
@@ -44,8 +45,8 @@ public class NotRule extends AbstractRule {
     }
 
     @Override
-    public boolean isSatisfied(int index, TradingRecord tradingRecord) {
-        final boolean satisfied = !rule.isSatisfied(index, tradingRecord);
+    public boolean isSatisfied(TimeSeries timeSeries, int index, TradingRecord tradingRecord) {
+        final boolean satisfied = !rule.isSatisfied(timeSeries, index, tradingRecord);
         traceIsSatisfied(index, satisfied);
         return satisfied;
     }

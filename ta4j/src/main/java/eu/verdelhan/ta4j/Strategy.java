@@ -64,10 +64,12 @@ public class Strategy {
     }
     
     /**
-     * @param index a tick index
+     * @param timeSeries the time series
+     * @param tick the tick in the time series
      * @return true if this strategy is unstable at the provided index, false otherwise (stable)
      */
-    public boolean isUnstableAt(int index) {
+    public boolean isUnstableAt(TimeSeries series, Tick tick) {
+        int index = series.getTickPosition(tick);
         return index < unstablePeriod;
     }
     
@@ -79,79 +81,86 @@ public class Strategy {
     }
     
     /**
-     * @param index the tick index
+     * @param timeSeries the time series
+     * @param tick the tick
      * @param tradingRecord the potentially needed trading history
      * @return true to recommend an order, false otherwise (no recommendation)
      */
-    public boolean shouldOperate(int index, TradingRecord tradingRecord) {
+    public boolean shouldOperate(TimeSeries series, Tick tick, TradingRecord tradingRecord) {
         Trade trade = tradingRecord.getCurrentTrade();
         if (trade.isNew()) {
-            return shouldEnter(index, tradingRecord);
+            return shouldEnter(series, tick, tradingRecord);
         } else if (trade.isOpened()) {
-            return shouldExit(index, tradingRecord);
+            return shouldExit(series, tick, tradingRecord);
         }
         return false;
     }
 
     /**
-     * @param index the tick index
+     * @param timeSeries the time series
+     * @param tick the tick
      * @return true to recommend to enter, false otherwise
      */
-    public boolean shouldEnter(int index) {
-        return shouldEnter(index, null);
+    public boolean shouldEnter(TimeSeries series, Tick tick) {
+        return shouldEnter(series, tick, null);
     }
 
     /**
-     * @param index the tick index
+     * @param timeSeries the time series
+     * @param tick the tick
      * @param tradingRecord the potentially needed trading history
      * @return true to recommend to enter, false otherwise
      */
-    public boolean shouldEnter(int index, TradingRecord tradingRecord) {
-        if (isUnstableAt(index)) {
+    public boolean shouldEnter(TimeSeries timeSeries, Tick tick, TradingRecord tradingRecord) {
+        if (isUnstableAt(timeSeries, tick)) {
             return false;
         }
-        final boolean enter = entryRule.isSatisfied(index, tradingRecord);
-        traceShouldEnter(index, enter);
+        int index = timeSeries.getTickPosition(tick);
+        final boolean enter = entryRule.isSatisfied(timeSeries, index, tradingRecord);
+        traceShouldEnter(tick, enter);
         return enter;
     }
 
     /**
-     * @param index the tick index
+     * @param timeSeries the time series
+     * @param tick the tick
      * @return true to recommend to exit, false otherwise
      */
-    public boolean shouldExit(int index) {
-        return shouldExit(index, null);
+    public boolean shouldExit(TimeSeries series, Tick tick) {
+        return shouldExit(series, tick, null);
     }
 
     /**
-     * @param index the tick index
+     * @param timeSeries the time series
+     * @param tick the tick
      * @param tradingRecord the potentially needed trading history
      * @return true to recommend to exit, false otherwise
      */
-    public boolean shouldExit(int index, TradingRecord tradingRecord) {
-        if (isUnstableAt(index)) {
+    public boolean shouldExit(TimeSeries series, Tick tick, TradingRecord tradingRecord) {
+        if (isUnstableAt(series, tick)) {
             return false;
         }
-        final boolean exit = exitRule.isSatisfied(index, tradingRecord);
-        traceShouldExit(index, exit);
+        int index = series.getTickPosition(tick);
+        final boolean exit = exitRule.isSatisfied(series, index, tradingRecord);
+        traceShouldExit(tick, exit);
         return exit;
     }
 
     /**
      * Traces the shouldEnter() method calls.
-     * @param index the tick index
+     * @param tick the tick
      * @param enter true if the strategy should enter, false otherwise
      */
-    protected void traceShouldEnter(int index, boolean enter) {
-        log.trace(">>> {}#shouldEnter({}): {}", getClass().getSimpleName(), index, enter);
+    protected void traceShouldEnter(Tick tick, boolean enter) {
+        log.trace(">>> {}#shouldEnter({}): {}", getClass().getSimpleName(), tick, enter);
     }
 
     /**
      * Traces the shouldExit() method calls.
-     * @param index the tick index
+     * @param tick the tick
      * @param exit true if the strategy should exit, false otherwise
      */
-    protected void traceShouldExit(int index, boolean exit) {
-        log.trace(">>> {}#shouldExit({}): {}", getClass().getSimpleName(), index, exit);
+    protected void traceShouldExit(Tick tick, boolean exit) {
+        log.trace(">>> {}#shouldExit({}): {}", getClass().getSimpleName(), tick, exit);
     }
 }
