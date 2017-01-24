@@ -28,12 +28,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ConstantIndicatorTest {
-    private ConstantIndicator<Decimal> constantIndicator;
+    private DecimalConstantIndicator constantIndicator;
 
     @Before
     public void setUp() {
 
-        constantIndicator = new ConstantIndicator<Decimal>(Decimal.valueOf("30.33"));
+        constantIndicator = new DecimalConstantIndicator(Decimal.valueOf("30.33"));
     }
 
     @Test

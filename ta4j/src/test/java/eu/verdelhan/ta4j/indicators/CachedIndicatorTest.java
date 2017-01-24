@@ -22,20 +22,26 @@
  */
 package eu.verdelhan.ta4j.indicators;
 
+import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import eu.verdelhan.ta4j.Decimal;
 import eu.verdelhan.ta4j.Strategy;
-import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
 import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.simple.ConstantIndicator;
+import eu.verdelhan.ta4j.indicators.simple.DecimalConstantIndicator;
 import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
 import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
-import java.util.Arrays;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
 
 public class CachedIndicatorTest {
 
@@ -57,7 +63,7 @@ public class CachedIndicatorTest {
     @Test
     public void getValueWithNullTimeSeries() {
         
-        ConstantIndicator<Decimal> constant = new ConstantIndicator<Decimal>(Decimal.TEN);
+        DecimalConstantIndicator constant = new DecimalConstantIndicator(Decimal.TEN);
         assertEquals(Decimal.TEN, constant.getValue(0));
         assertEquals(Decimal.TEN, constant.getValue(100));
         assertNull(constant.getTimeSeries());

@@ -33,24 +33,8 @@ public class FixedDecimalIndicator extends FixedIndicator<Decimal> {
      * 
      */
     private static final long serialVersionUID = 1739756114404996720L;
-
-    /**
-     * Constructor.
-     * @param values the values to be returned by this indicator
-     */
-    public FixedDecimalIndicator(double... values) {
-        for (double value : values) {
-            addValue(Decimal.valueOf(value));
-        }
-    }
     
-    /**
-     * Constructor.
-     * @param values the values to be returned by this indicator
-     */
-    public FixedDecimalIndicator(String... values) {
-        for (String value : values) {
-            addValue(Decimal.valueOf(value));
-        }
+    public FixedDecimalIndicator(Decimal...decimals) {
+        super(decimals);
     }
 }

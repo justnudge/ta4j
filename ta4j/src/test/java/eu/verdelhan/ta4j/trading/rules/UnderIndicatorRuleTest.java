@@ -38,7 +38,15 @@ public class UnderIndicatorRuleTest {
     
     @Before
     public void setUp() {
-        indicator = new FixedDecimalIndicator(0, 5, 8, 5, 1, 10, 20, 30);
+        indicator = new FixedDecimalIndicator(
+                Decimal.valueOf(0), 
+                Decimal.valueOf(5), 
+                Decimal.valueOf(8), 
+                Decimal.valueOf(5), 
+                Decimal.valueOf(1), 
+                Decimal.valueOf(10), 
+                Decimal.valueOf(20), 
+                Decimal.valueOf(30));
         rule = new UnderIndicatorRule(indicator, Decimal.valueOf(5));
     }
     

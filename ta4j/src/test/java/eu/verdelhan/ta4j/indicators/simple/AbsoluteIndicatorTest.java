@@ -30,9 +30,9 @@ public class AbsoluteIndicatorTest {
 
     @Test
     public void constantIndicators() {
-        AbsoluteIndicator positiveInd = new AbsoluteIndicator(new ConstantIndicator<Decimal>(Decimal.valueOf(1337)));
-        AbsoluteIndicator zeroInd = new AbsoluteIndicator(new ConstantIndicator<Decimal>(Decimal.ZERO));
-        AbsoluteIndicator negativeInd = new AbsoluteIndicator(new ConstantIndicator<Decimal>(Decimal.valueOf(-42.42)));
+        AbsoluteIndicator positiveInd = new AbsoluteIndicator(new DecimalConstantIndicator(Decimal.valueOf(1337)));
+        AbsoluteIndicator zeroInd = new AbsoluteIndicator(new DecimalConstantIndicator(Decimal.ZERO));
+        AbsoluteIndicator negativeInd = new AbsoluteIndicator(new DecimalConstantIndicator(Decimal.valueOf(-42.42)));
         for (int i = 0; i < 10; i++) {
             assertDecimalEquals(positiveInd.getValue(i), 1337);
             assertDecimalEquals(zeroInd.getValue(i), 0);

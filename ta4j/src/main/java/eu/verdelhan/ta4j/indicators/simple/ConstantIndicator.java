@@ -28,7 +28,7 @@ import eu.verdelhan.ta4j.indicators.AbstractIndicator;
  * Constant indicator.
  * <p>
  */
-public class ConstantIndicator<T> extends AbstractIndicator<T> {
+public abstract class ConstantIndicator<T> extends AbstractIndicator<T> {
 
     /**
      * 

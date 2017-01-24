@@ -26,6 +26,8 @@ import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
 import org.junit.Assert;
 import org.junit.Test;
 
+import eu.verdelhan.ta4j.Decimal;
+
 public class FixedIndicatorTest {
     
     private FixedDecimalIndicator fixedDecimalIndicator;
@@ -34,15 +36,13 @@ public class FixedIndicatorTest {
 
     @Test
     public void getValueOnFixedDecimalIndicator() {
-        fixedDecimalIndicator = new FixedDecimalIndicator(13.37, 42, -17);
+        fixedDecimalIndicator = new FixedDecimalIndicator(
+                Decimal.valueOf(13.37), 
+                Decimal.valueOf(42), 
+                Decimal.valueOf(-17));
         assertDecimalEquals(fixedDecimalIndicator.getValue(0), 13.37);
         assertDecimalEquals(fixedDecimalIndicator.getValue(1), 42);
         assertDecimalEquals(fixedDecimalIndicator.getValue(2), -17);
-        
-        fixedDecimalIndicator = new FixedDecimalIndicator("3.0", "-123.456", "0");
-        assertDecimalEquals(fixedDecimalIndicator.getValue(0), "3");
-        assertDecimalEquals(fixedDecimalIndicator.getValue(1), "-123.456");
-        assertDecimalEquals(fixedDecimalIndicator.getValue(2), "0.0");
         
     }
 

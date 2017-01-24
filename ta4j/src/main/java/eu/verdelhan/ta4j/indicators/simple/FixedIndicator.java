@@ -32,7 +32,7 @@ import eu.verdelhan.ta4j.indicators.AbstractIndicator;
  * A fixed indicator.
  * @param <T> the type of returned value (Double, Boolean, etc.)
  */
-public class FixedIndicator<T> extends AbstractIndicator<T> {
+public abstract class FixedIndicator<T> extends AbstractIndicator<T> {
 
     /**
      * 

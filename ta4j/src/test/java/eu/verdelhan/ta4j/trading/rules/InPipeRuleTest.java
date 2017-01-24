@@ -38,7 +38,17 @@ public class InPipeRuleTest {
     
     @Before
     public void setUp() {
-        indicator = new FixedDecimalIndicator(50, 70, 80, 90, 99, 60, 30, 20, 10, 0);
+        indicator = new FixedDecimalIndicator(
+                Decimal.valueOf(50), 
+                Decimal.valueOf(70),
+                Decimal.valueOf(80), 
+                Decimal.valueOf(90), 
+                Decimal.valueOf(99), 
+                Decimal.valueOf(60), 
+                Decimal.valueOf(30), 
+                Decimal.valueOf(20), 
+                Decimal.valueOf(10), 
+                Decimal.valueOf(0));
         rule = new InPipeRule(indicator, Decimal.valueOf(80), Decimal.valueOf(20));
     }
     

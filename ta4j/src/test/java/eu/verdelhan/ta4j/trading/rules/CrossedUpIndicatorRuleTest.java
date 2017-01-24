@@ -37,7 +37,15 @@ public class CrossedUpIndicatorRuleTest {
     
     @Before
     public void setUp() {
-        evaluatedIndicator = new FixedDecimalIndicator(8, 9, 10, 12, 9, 11, 12, 13);
+        evaluatedIndicator = new FixedDecimalIndicator(
+                Decimal.valueOf(8), 
+                Decimal.valueOf(9), 
+                Decimal.valueOf(10), 
+                Decimal.valueOf(12), 
+                Decimal.valueOf(9), 
+                Decimal.valueOf(11), 
+                Decimal.valueOf(12), 
+                Decimal.valueOf(13));
         rule = new CrossedUpIndicatorRule(evaluatedIndicator, Decimal.TEN);
     }
     

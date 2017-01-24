@@ -25,7 +25,7 @@ package eu.verdelhan.ta4j.trading.rules;
 import eu.verdelhan.ta4j.Decimal;
 import eu.verdelhan.ta4j.Indicator;
 import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.indicators.simple.ConstantIndicator;
+import eu.verdelhan.ta4j.indicators.simple.DecimalConstantIndicator;
 
 /**
  * Indicator-over-indicator rule.
@@ -45,7 +45,7 @@ public class OverIndicatorRule extends AbstractRule {
      * @param threshold a threshold
      */
     public OverIndicatorRule(Indicator<Decimal> indicator, Decimal threshold) {
-        this(indicator, new ConstantIndicator<Decimal>(threshold));
+        this(indicator, new DecimalConstantIndicator(threshold));
     }
     
     /**

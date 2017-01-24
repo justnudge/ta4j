@@ -38,7 +38,15 @@ public class OverIndicatorRuleTest {
     
     @Before
     public void setUp() {
-        indicator = new FixedDecimalIndicator(20, 15, 10, 5, 0, -5, -10, 100);
+        indicator = new FixedDecimalIndicator(
+                Decimal.valueOf(20), 
+                Decimal.valueOf(15), 
+                Decimal.valueOf(10), 
+                Decimal.valueOf(5), 
+                Decimal.valueOf(0), 
+                Decimal.valueOf(-5), 
+                Decimal.valueOf(-10), 
+                Decimal.valueOf(100));
         rule = new OverIndicatorRule(indicator, Decimal.valueOf(5));
     }
     

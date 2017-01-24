@@ -22,23 +22,25 @@
  */
 package eu.verdelhan.ta4j.indicators.simple;
 
-import eu.verdelhan.ta4j.Decimal;
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import eu.verdelhan.ta4j.Decimal;
+
 public class DifferenceIndicatorTest {
     
-    private ConstantIndicator<Decimal> constantIndicator;
+    private DecimalConstantIndicator constantIndicator;
     
-    private FixedIndicator<Decimal> mockIndicator;
+    private FixedDecimalIndicator mockIndicator;
 
     private DifferenceIndicator differenceIndicator;
     
     @Before
     public void setUp() {
-        constantIndicator = new ConstantIndicator<Decimal>(Decimal.valueOf(6));
-        mockIndicator = new FixedIndicator<Decimal>(
+        constantIndicator = new DecimalConstantIndicator(Decimal.valueOf(6));
+        mockIndicator = new FixedDecimalIndicator(
                 Decimal.valueOf("-2.0"),
                 Decimal.valueOf("0.00"),
                 Decimal.valueOf("1.00"),

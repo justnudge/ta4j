@@ -25,7 +25,7 @@ package eu.verdelhan.ta4j.trading.rules;
 import eu.verdelhan.ta4j.Decimal;
 import eu.verdelhan.ta4j.Indicator;
 import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.indicators.simple.ConstantIndicator;
+import eu.verdelhan.ta4j.indicators.simple.DecimalConstantIndicator;
 
 /**
  * Indicator-between-indicators rule.
@@ -48,7 +48,7 @@ public class InPipeRule extends AbstractRule {
      * @param lower the lower threshold
      */
     public InPipeRule(Indicator<Decimal> ref, Decimal upper, Decimal lower) {
-        this(ref, new ConstantIndicator<Decimal>(upper), new ConstantIndicator<Decimal>(lower));
+        this(ref, new DecimalConstantIndicator(upper), new DecimalConstantIndicator(lower));
     }
 
     /**

@@ -29,18 +29,18 @@ import org.junit.Test;
 
 public class SumIndicatorTest {
     
-    private ConstantIndicator<Decimal> constantIndicator;
+    private DecimalConstantIndicator constantIndicator;
     
-    private FixedIndicator<Decimal> mockIndicator;
+    private FixedDecimalIndicator mockIndicator;
     
-    private FixedIndicator<Decimal> mockIndicator2;
+    private FixedDecimalIndicator mockIndicator2;
 
     private SumIndicator sumIndicator;
     
     @Before
     public void setUp() {
-        constantIndicator = new ConstantIndicator<Decimal>(Decimal.valueOf(6));
-        mockIndicator = new FixedIndicator<Decimal>(
+        constantIndicator = new DecimalConstantIndicator(Decimal.valueOf(6));
+        mockIndicator = new FixedDecimalIndicator(
                 Decimal.valueOf("-2.0"),
                 Decimal.valueOf("0.00"),
                 Decimal.valueOf("1.00"),
@@ -49,7 +49,7 @@ public class SumIndicatorTest {
                 Decimal.valueOf("6.00"),
                 Decimal.valueOf("10.0")
         );
-        mockIndicator2 = new FixedIndicator<Decimal>(
+        mockIndicator2 = new FixedDecimalIndicator(
                 Decimal.ZERO,
                 Decimal.ONE,
                 Decimal.TWO,

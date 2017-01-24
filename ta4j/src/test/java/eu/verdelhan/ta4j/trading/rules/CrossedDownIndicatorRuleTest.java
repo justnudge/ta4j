@@ -37,7 +37,15 @@ public class CrossedDownIndicatorRuleTest {
     
     @Before
     public void setUp() {
-        evaluatedIndicator = new FixedDecimalIndicator(12, 11, 10, 9, 11, 8, 7, 6);
+        evaluatedIndicator = new FixedDecimalIndicator(
+                Decimal.valueOf(12), 
+                Decimal.valueOf(11), 
+                Decimal.valueOf(10), 
+                Decimal.valueOf(9), 
+                Decimal.valueOf(11), 
+                Decimal.valueOf(8), 
+                Decimal.valueOf(7), 
+                Decimal.valueOf(6));
         rule = new CrossedDownIndicatorRule(evaluatedIndicator, Decimal.TEN);
     }
     
